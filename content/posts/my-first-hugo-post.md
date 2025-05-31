@@ -14,16 +14,16 @@ draft = false
 
 #### Remote Procedure Call, RPC {#remote-procedure-call-rpc}
 
-以太坊链由成千上万台计算机（节点）共同维护和更新。每个节点都保存着整个区块链的副本（或部分副本），并遵循相同的规则来验证交易和创建新区块。当需要与查询链上的数据，不可能访问所有的节点，因此需要一个“入口”，RPC 就充当这个入口。
+以太坊链由成千上万台计算机（节点）共同维护和更新。每个节点都保存着整个区块链的副本（或部分副本），并遵循相同的规则来验证交易和创建新区块。当需要查询链上的数据，不可能访问所有的节点，因此需要一个“入口”，RPC 就充当这个入口。
 
 首先，通过 `pip install web3` 安装 web3 这个 Python 库.
 
-然后前往 www.infura.io 注册一个帐号并申请 RPC API，并通过下面的代码测试是否能够成功连接到 RPC 节点。
+然后前往 www.infura.io 注册一个帐号申请 RPC API，将下面代码中 rpc_url 变量内的 "your_rpc_api" 替换成你的 RPC API，并运行测试是否能够成功连接到 RPC 节点。
 
 ```python
 from web3 import Web3
 
-rpc_url = "https://mainnet.infura.io/v3/73a7f170007547dc982192de87b4465f"
+rpc_url = "https://mainnet.infura.io/v3/your_rpc_api"
 web3 = Web3(Web3.HTTPProvider(rpc_url))
 
 if web3.is_connected():
@@ -32,6 +32,9 @@ if web3.is_connected():
 else:
     print("连接失败！")
 ```
+
+
+#### <span class="org-todo todo TODO">TODO</span> 使用代理 {#使用代理}
 
 
 ### 理解 Uniswap V2 核心概念 {#理解-uniswap-v2-核心概念}
