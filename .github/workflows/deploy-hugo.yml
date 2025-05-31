@@ -9,6 +9,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
+# 声明工作流程所需的权限
+permissions: # <--- 添加这个 permissions 块
+  contents: read    # 允许检出代码 (actions/checkout 需要)
+  pages: write      # 允许写入 GitHub Pages (actions/deploy-pages 需要)
+  id-token: write   # 允许请求 OIDC 令牌 (actions/deploy-pages 需要)
+
 # Default to bash
 defaults:
   run:
