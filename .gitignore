@@ -1,0 +1,18 @@
+# Hugo
+/public/
+/resources/
+/static/uploads/ # 如果你使用 CMS 并将上传内容放在 static/uploads，可能需要忽略
+hugo_stats.json  # Hugo's build statistics file
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Private files (if any)
+# config.private.toml
+# .env
