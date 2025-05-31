@@ -1,0 +1,52 @@
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch (main or master)
+  push:
+    branches:
+      - main  # 修改为你的主分支名，例如 master
+
+  # Allows you to run this workflow manually from the Actions tab on GitHub
+  workflow_dispatch:
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3 # 使用最新的 v3 版本
+        with:
+          hugo-version: 'latest' # 或者指定一个明确的 Hugo 版本，例如 '0.120.4'
+          extended: true         # 大部分主题需要 extended 版本
+
+      - name: Build Hugo site
+        run: hugo --minify # --minify 是可选的，可以减小输出文件大小
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # 新版本推荐使用这个action上传产物
+        with:
+          path: ./public
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build # Deploy job depends on the build job
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # 新版本推荐使用这个action进行部署
