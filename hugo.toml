@@ -2,3 +2,35 @@ baseURL = 'https://Yi-Yuanzhe.github.io/The-Great-Work/'
 languageCode = 'zh-cn'
 title = 'the Great Work'
 theme = 'PaperMod'
+
+# hugo.toml
+
+# ... 其他配置 ...
+#
+[params]
+  # ... 其他 params 设置 ...
+  math = true # 启用 KaTeX/MathJax 支持
+  # 或者有些主题可能是嵌套的，如：
+  # [params.features]
+  #   math = true
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "文章" # 菜单上显示的文字
+    url = "/posts/" # 链接到的 URL
+    weight = 10     # 决定菜单顺序，数字越小越靠前
+
+  [[menu.main]]
+    identifier = "magick"  # <<< 新增的菜单项
+    name = "Magick"         # <<< 在菜单上会显示“笔记”
+    url = "/condensed_chaos/"       # <<< 链接到 /notes/ 栏目列表页
+    weight = 20           # <<< weight 比 "文章" 大，所以排在后面
+
+  [[menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 30
+
+  # ... 其他菜单项 ...
